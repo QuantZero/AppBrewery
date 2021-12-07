@@ -1,0 +1,33 @@
+body {
+  background-color: #171717;
+}
+
+p {
+  color: white;
+}
+
+table {
+  color: white;
+}
+
+a {
+  color: lightgrey;
+}
+
+hr {
+  border-color: lightgrey;
+  border-width: 5px;
+  border-style: dotted none none none;
+        width: 5%;
+}
+
+li {
+  color: grey;
+}
+
+h1 {
+  color: #E9204F;
+}
+h3 {
+  color: #E9204F;
+}
