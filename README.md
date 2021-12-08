@@ -1,0 +1,1 @@
+This repository includes some of the works I've done while I'm in the App Brewery Web Development Bootcamp. I will be posting all the files as a checkpoint on my learning curve. These contents will be used in the future to laugh at myself
