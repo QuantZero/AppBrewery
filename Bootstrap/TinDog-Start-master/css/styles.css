@@ -4,15 +4,14 @@ body {
 
 #title {
     background-color: #ff4c68;
+
 }
 
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    line-height: 1.5;
-    font-weight: 900;
-    color: white;
-}
+h1, h2, h3, h4, h5 {
+        font-family: 'Montserrat', sans-serif;
+
+} 
+
 
 h2 {
     font-weight: 400;
@@ -22,6 +21,14 @@ h2 {
 
 p {
     color: gray;
+}
+
+.big-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    line-height: 1.5;
+    font-weight: 900;
+    color: white;
 }
 
 .container-fluid {
@@ -75,7 +82,7 @@ font-family: 'Ubuntu', sans-serif;
     padding: 7% 15%;
     background-color: white;
     position: relative;
-   
+
 }
 
 .feature-box {
@@ -110,8 +117,8 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .celo {
-   width: 15%;
-   border-radius: 50%;
+    width: 15%;
+    border-radius: 50%;
 }
 
 #press {
@@ -123,7 +130,8 @@ font-family: 'Ubuntu', sans-serif;
 
 .press-logo {
     width: 15%;
-    margin: 20px 20px 50px;;
+    margin: 20px 20px 50px;
+    ;
 }
 
 .carousel-item {
@@ -134,10 +142,48 @@ font-family: 'Ubuntu', sans-serif;
 
 /* Pricing Section */
 #pricing {
-padding: 100px;
-text-align: center;
+    padding: 100px;
+    text-align: center;
 }
 
 .pricing-col {
     padding: 3% 2%;
+}
+
+@media (max-width: 1160px) {
+
+    #title {
+        text-align: center;
+
+    }
+
+    .title-image {
+        position: static;
+        transform: rotate(0deg);
+    }
+
+}
+
+#cta {
+    background-color: #ff4c68;
+    text-align: center;
+
+}
+
+.cta-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    padding-top: 5%;
+    font-weight: 900;
+    line-height: 1.5;
+    color: white;
+}
+
+#footer {
+    text-align: center;
+    padding: 7% 15% 0;
+}
+
+.social {
+    margin: 20px 10px;
 }
