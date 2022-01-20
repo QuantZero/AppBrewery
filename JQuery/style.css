@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(16, 90, 90);
+}
+
+.HeadingStyle {
+    font-size: 3rem;
+    color: blueviolet;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
