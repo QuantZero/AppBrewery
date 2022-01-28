@@ -15,6 +15,7 @@ app.get("/", function(req,res) { //S2 - Homepage connected to the signup.html
     res.sendFile(__dirname + "/signup.html")
 })
 
+//Start of the post request
 app.post("/", function(req,res) { //S3 Programming the post route using bodyparser
     //Callback below
 
@@ -44,10 +45,19 @@ app.post("/", function(req,res) { //S3 Programming the post route using bodypars
 
     const options = {
         method: "POST",
-        auth: "kasapoglu:24ec26bf60f86c0d20e1740b8fd91613-us14"
+        auth: "kasapoglu:fb4db5eadfaad089632b9befe3c4277b-us14" //Acquired from a test Mailchimp account.
     }
 
    const request = https.request(url, options, function(response) {
+        if (response.statusCode === 200 ) {
+            res.sendFile(__dirname + "/success.html")
+        }
+        else {
+            res.sendFile(__dirname + "/failure.html")
+        }
+
+
+
         response.on("data", function(data) {
             console.log(JSON.parse(data));
         })
@@ -55,11 +65,14 @@ app.post("/", function(req,res) { //S3 Programming the post route using bodypars
     request.write(jsonData);
     request.end();
 
+}) //Ending of the post request 1
+
+app.post("/failure", function(req, res) {
+    res.redirect("/")  
 })
+//Redirected the /Failure/Try Agaim button to the homepage
 
-
-
-app.listen(3000, function() { //S1
+app.listen(process.env.PORT || 3000, function() { //S1 ----- huroku port code added.
     console.log("Server port 3000 initiated.")
 });
 
