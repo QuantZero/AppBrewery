@@ -5,49 +5,44 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+var items = ["Buy Food", "Get Beer", "Hit the Gym"];
+
 app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({extended: true})); //added bodyParser
+app.use(express.static("public"));
 
 app.get("/", function (req, res) {
 
     //Day defined
     var today = new Date();
-    var currentDay = today.getDay();
-    var day = "";
 
-    //Commands for Weekends and Weekdays 0-6 0=Sunday 
-    switch (currentDay) {
-        case 0:
-            day = "Sunday";
-            break;
-        case 1:
-            day = "Monday";
-            break;
-        case 2:
-            day = "Tuesday";
-            break;
-        case 3:
-            day = "Wednesday";
-            break;
-        case 4:
-            day = "Thursday";
-            break;
-        case 5:
-            day = "Friday";
-            break;
-        case 6:
-            day = "Saturday";
-            break;
+  //Changed the date format
+    var options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    };
 
-        default:
-            console.log("Error: current day is equal to: " + currentDay);
-            break;
-    }
+    var day = today.toLocaleDateString("en-US", options);
 
     res.render("list", {
-    kindofDay: day
+        kindOfDay: day, newListItems: items
     }); //respond by rendering  list esj
 
 });
+
+//Post request
+app.post("/", function(req, res) {
+    var item = req.body.newListItems;
+
+    items.push(item);
+
+    res.redirect("/");
+
+})
+
+
 
 app.listen(3000, function () {
     console.log("Local server initiated at port 3000.")
