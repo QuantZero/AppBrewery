@@ -2,45 +2,67 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js")
 
 const app = express();
 
-var items = ["Buy Food", "Get Beer", "Hit the Gym"];
+let items = ["Buy Food", "Get Beer", "Hit the Gym"];
+let workItems = [];
 
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({extended: true})); //added bodyParser
+app.use(bodyParser.urlencoded({
+    extended: true
+})); //added bodyParser
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
 
-    //Day defined
-    var today = new Date();
-
-  //Changed the date format
-    var options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-
-    var day = today.toLocaleDateString("en-US", options);
+let day = date();
 
     res.render("list", {
-        kindOfDay: day, newListItems: items
+        listTitle: day,
+        newListItems: items
     }); //respond by rendering  list esj
 
 });
 
 //Post request
-app.post("/", function(req, res) {
-    var item = req.body.newListItems;
+app.post("/", function (req, res) {
 
-    items.push(item);
+    let item = req.body.newListItems;
 
-    res.redirect("/");
+    if (req.body.list === "Work") {
+        workItems.push(item);
+    } else {
+        items.push(item);
 
+        res.redirect("/");
+
+    }
+
+
+
+});
+
+app.get("/work", function (req, res) {
+    res.render("list", {
+        listTitle: "Work List",
+        newListItems: workItems
+    })
+});
+
+
+app.get("/about", function(req, res) {
+    res.render("about")
 })
+
+app.post("/work", function (req, res) {
+    let item = req.body.newItem;
+    workItems.push(item);
+    res.redirect("/work")
+});
+
 
 
 
