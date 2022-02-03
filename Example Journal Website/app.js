@@ -10,44 +10,62 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
+var posts = [];
+
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("public"));
 
 
 //Response Section
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
 
-  res.render("home", { startingContent: homeStartingContent})
+  res.render("home", {
+    startingContent: homeStartingContent
+  })
+  console.log(posts)
 });
 
-app.get("/contact", function(req, res) {
+app.get("/contact", function (req, res) {
 
-  res.render("contact", { contactPage: contactContent})
+  res.render("contact", {
+    contactPage: contactContent
+  })
 
 });
 
-app.get("/about", function(req, res) {
+app.get("/about", function (req, res) {
 
-  res.render("about", { aboutPage: aboutContent})
-  
+  res.render("about", {
+    aboutPage: aboutContent
+  })
+
 });
 
 
-app.get("/compose", function(req, res) {
+app.get("/compose", function (req, res) {
 
   res.render("compose")
-  
+
 });
 //Response Section Ends
 
 
 //Post Section
 
-app.post("/compose", function(req,res) {
-  console.log(req.body.composeForm)
-})
+app.post("/compose", function (req, res) {
+  const post = {
+    title: req.body.composeForm,
+    content: req.body.textArea
+  };
+
+  posts.push(post);
+  res.redirect("/");
+
+});
 
 
 
@@ -58,7 +76,6 @@ app.post("/compose", function(req,res) {
 
 
 
-
-app.listen(3000, function() {
+app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
